@@ -9,21 +9,27 @@ namespace Wavtest {
        static Audio wa = new Audio();
         
         private static byte[] wavdata;
-        
+        static bool ok = true;
 
         static void Main(string[] args) {
-            //var curdir = Directory.GetCurrentDirectory();
-            string dirFX = $"{Directory.GetCurrentDirectory()}\\res\\", strJump = "Jump.wav";
+            string strJump = "Jump.wav";
+            try {
+                string dirFX = $"{Directory.GetCurrentDirectory()}\\res\\";
+                wavdata = File.ReadAllBytes($"{dirFX}{strJump}");
+            } catch (DirectoryNotFoundException) {
+                ok = false;
+                WriteLine("Directory not found");
+                ReadKey();
+            }
 
-            wavdata = File.ReadAllBytes($"{dirFX}{strJump}");
+            if (ok) {
+                WriteLine($"Press ENTER to hear {strJump}. Enter 'q' to quit.");
 
-            WriteLine($"Press ENTER to hear {strJump}. Enter 'q' to quit.");
-
-            bool repeat = true;
-            while (repeat) {
+                bool repeat = true;
+                while (repeat) {
                 if ((char)(Read()) == 'q') {repeat = false;}
                 wa.Play(wavdata, AudioPlayMode.Background);
-                
+                }
             }
 
 
