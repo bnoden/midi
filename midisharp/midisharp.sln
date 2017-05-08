@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "midisharptest", "midisharptest\midisharptest.csproj", "{BFB8A731-2CD7-4449-BED7-4D77169465F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wavtest", "wavtest\wavtest.csproj", "{6940518B-37B3-4025-9F4F-87567B50D868}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFB8A731-2CD7-4449-BED7-4D77169465F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB8A731-2CD7-4449-BED7-4D77169465F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB8A731-2CD7-4449-BED7-4D77169465F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB8A731-2CD7-4449-BED7-4D77169465F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6940518B-37B3-4025-9F4F-87567B50D868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6940518B-37B3-4025-9F4F-87567B50D868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6940518B-37B3-4025-9F4F-87567B50D868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6940518B-37B3-4025-9F4F-87567B50D868}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
