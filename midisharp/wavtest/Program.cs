@@ -17,12 +17,13 @@ namespace Wavtest {
 
             wavdata = File.ReadAllBytes($"{dirFX}{strJump}");
 
-            WriteLine($"Playing {strJump}\nrepeat=true");
-            
-            int count = 5;
-            while (count>0) {
-                wa.Play(wavdata, AudioPlayMode.WaitToComplete);
-                count--;
+            WriteLine($"Press ENTER to hear {strJump}. Enter 'q' to quit.");
+
+            bool repeat = true;
+            while (repeat) {
+                if ((char)(Read()) == 'q') {repeat = false;}
+                wa.Play(wavdata, AudioPlayMode.Background);
+                
             }
 
 
