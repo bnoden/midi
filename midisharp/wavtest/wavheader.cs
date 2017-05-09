@@ -4,7 +4,7 @@ using System.Text;
 
 namespace wavtest
 {
-    class Wavheader
+    public class Wavheader
     {
         private const string FILE_TYPE_ID = "RIFF";
         private const string MEDIA_TYPE_ID = "WAVE";

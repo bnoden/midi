@@ -7,8 +7,10 @@ using Microsoft.VisualBasic.Devices;
 
 // note that VB is not currently supported on .NET Core, so this is using .NET Framework
 
-namespace Wavtest {
-    class Program {
+namespace wavtest
+{
+    class Program
+    {
        static Audio wa = new Audio();
         
         private static byte[] wavdata;
@@ -33,7 +35,9 @@ namespace Wavtest {
                 while (repeat) {
                     if ((char)(Read()) == 'q') {repeat = false;}
 
+                    //Wavheader w = new Wavheader();
                     wa.Play(wavdata, AudioPlayMode.Background);
+
                     for (int i=0;i<0xf;i++) {
                         Write((char)wavdata[i]);
                     }
