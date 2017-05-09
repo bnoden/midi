@@ -1,3 +1,6 @@
+
+template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
+
 class MidiTest {
   private:
     byte channel, note, velocity, noteOn;
@@ -22,20 +25,26 @@ class MidiTest {
     void setVelocity(byte v) {velocity = v;}
     void setNoteOn(byte o) {noteOn = o;}
     
-    void Out() { Serial.write("{noteOn}\n{note}\n{velocity}\n"); }
+    void Out() {
+      Serial << "noteOn: " << noteOn << '\n';
+      Serial << "note: " << note << '\n';
+      Serial << "velocity=" << velocity << '\n';
+      Serial << '\n';
+      }
 };
 
-void setup() { Serial.begin(31250); }
+void setup() { Serial.begin(38400); }
 
 void loop() {
    MidiTest mn;
    
    for (byte i = 0x3c; i < 0x48; i++) { // 60 to 72
     mn.setNote(i);
+    mn.setVelocity(1);
     mn.Out();
-    delay(60);
+    delay(1000);
     mn.setVelocity(0);
     mn.Out();
-    delay(60);
+    delay(1000);
    }
 }
