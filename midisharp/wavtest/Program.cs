@@ -4,6 +4,8 @@ using static System.Console;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
 
+// note that VB is not currently supported on .NET Core, so this is using .NET Framework
+
 namespace Wavtest {
     class Program {
        static Audio wa = new Audio();
@@ -23,7 +25,7 @@ namespace Wavtest {
             }
 
             if (ok) {
-                WriteLine($"Press ENTER to hear {strJump}. Enter 'q' to quit.");
+                WriteLine($"Press ENTER to play {strJump}. Enter 'q' to quit.");
 
                 bool repeat = true;
                 while (repeat) {

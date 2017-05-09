@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6940518B-37B3-4025-9F4F-87567B50D868}</ProjectGuid>
+    <ProjectGuid>{EA012233-7890-4518-A904-1631F5EB4065}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>wavtest</RootNamespace>
     <AssemblyName>wavtest</AssemblyName>
@@ -48,10 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Jump.wav" />
     <Content Include="res\Jump.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

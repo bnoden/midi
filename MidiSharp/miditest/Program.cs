@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace midisharptest
+namespace miditest
 {
     class Program
     {
