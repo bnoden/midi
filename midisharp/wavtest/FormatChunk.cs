@@ -49,7 +49,7 @@ namespace wavtest
         }
 
         public byte[] GetBytes() {
-            List<Byte> chunkBytes = new List<byte>();
+            List<Byte> chunkBytes = new List<Byte>();
             chunkBytes.AddRange(Encoding.ASCII.GetBytes(ChunkId));
             chunkBytes.AddRange(BitConverter.GetBytes(ChunkSize));
             chunkBytes.AddRange(BitConverter.GetBytes(FormatTag));

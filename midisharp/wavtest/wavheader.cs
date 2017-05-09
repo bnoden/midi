@@ -21,7 +21,7 @@ namespace wavtest
         }
 
         public byte[] GetBytes() {
-            List<Byte> chunkData = new List<byte>();
+            List<Byte> chunkData = new List<Byte>();
             chunkData.AddRange(Encoding.ASCII.GetBytes(FileTypeId));
             chunkData.AddRange(BitConverter.GetBytes(FileLength));
             chunkData.AddRange(Encoding.ASCII.GetBytes(MediaTypeId));
