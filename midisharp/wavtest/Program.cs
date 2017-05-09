@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using static System.Console;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
@@ -24,7 +25,7 @@ namespace Wavtest {
                 WriteLine("Directory not found");
                 ReadKey();
             }
-
+            
             if (ok) {
                 WriteLine($"Press ENTER to play {strJump}. Enter 'q' to quit.");
 
