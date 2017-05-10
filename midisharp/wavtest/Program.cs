@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 using System.IO;
 using System.Text;
 using static System.Console;
@@ -34,14 +34,11 @@ namespace wavtest
 
                 bool repeat = true;
                 while (repeat) {
-                    if ((char)(Read()) == 'q') {repeat = false;}
+                    if ((string)(ReadLine()) == "q") {repeat = false;}
 
-                    //Wavheader w = new Wavheader();
                     wa.Play(wavdata, AudioPlayMode.Background);
 
-                    for (int i=0;i<0xf;i++) {
-                        Write((char)wavdata[i]);
-                    }
+                    for (int i=0;i<0xf;i++) { Write((char)wavdata[i]); }
                 }
             }
 
