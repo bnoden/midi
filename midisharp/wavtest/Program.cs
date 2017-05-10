@@ -1,11 +1,12 @@
-﻿using System;
+﻿﻿using System;
 using System.IO;
 using System.Text;
 using static System.Console;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
 
-// note that VB is not currently supported on .NET Core, so this is using .NET Framework
+// note that this is built with .NET Framework, not .NET Core
+// .NET Core does not support VB as of this writing
 
 namespace wavtest
 {
