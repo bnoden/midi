@@ -47,7 +47,7 @@ namespace miditest
             var res = String.Empty;
 
             string dirmid = $"{Directory.GetCurrentDirectory()}\\mid\\";
-            res = Mci($"open \"{dirmid}motherearthx0.mid\" alias music");
+            res = Mci($"open \"{dirmid}forest.mid\" alias music");
             res = Mci("play music");
             Console.WriteLine(dirmid);
             Console.ReadLine();
