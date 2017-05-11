@@ -4,7 +4,7 @@ namespace wavtest
 {
    public class SineWave
    {
-      private readonly double _frequency;
+      private  double _frequency;
       private readonly UInt32 _sampleRate;
       private readonly UInt16 _seconds;
       private short[] _dataBuffer;
@@ -17,6 +17,11 @@ namespace wavtest
          _seconds = s;
          GenerateData();
       }
+
+      public void setFrequency(double f) {
+            _frequency = f;
+      }
+      public double getFrequency() {return _frequency;}
  
       private void GenerateData() {
          uint bufferSize = _sampleRate * _seconds;

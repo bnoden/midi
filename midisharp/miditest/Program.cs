@@ -47,25 +47,20 @@ namespace miditest
             var res = String.Empty;
 
             string dirmid = $"{Directory.GetCurrentDirectory()}\\mid\\";
-            res = Mci($"open \"{dirmid}forest.mid\" alias music");
+            string mfname ="ff6f.mid";
+
+            res = Mci($"open \"{dirmid}{mfname}\" alias music");
             res = Mci("play music");
-            Console.WriteLine(dirmid);
+            Console.WriteLine($"{dirmid}{mfname}");
             Console.ReadLine();
             res = Mci("close crooner");
       }
  
       static void Main() {
-            int handle = 0;
-            MciMidiTest();
-            var numDevs = midiOutGetNumDevs();
-            MidiOutCaps myCaps = new MidiOutCaps();
-            var res = midiOutGetDevCaps(0, ref myCaps, (UInt32)Marshal.SizeOf(myCaps));
+            
 
-            res = midiOutOpen(ref handle, 0, null, 0, 0);
-            res = midiOutShortMsg(handle, 0x000019C0);
-            res = midiOutShortMsg(handle, 0x007F3C90);
-            res = midiOutClose(handle);
- 
+            
+            MciMidiTest();
       }
  
    }
