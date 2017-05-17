@@ -9,9 +9,15 @@ const uint16_t y1 = A3;
 void setup() {
   lcd.begin(16,2);
   lcd.clear();
+  lcd.setCursor(0,0); lcd.print("X");
+  lcd.setCursor(0,1); lcd.print("Y");
+  lcd.setCursor(8,0);
+  lcd.print("(c)1983");
+  lcd.setCursor(8,1);
+  lcd.print("Nintendo");
 }
 
-uint16_t readX() {
+void readX() {
   pinMode(y1, OUTPUT);
   pinMode(x2, INPUT);
   pinMode(y2, OUTPUT);
@@ -19,10 +25,13 @@ uint16_t readX() {
   digitalWrite(y1, LOW);
   digitalWrite(y2, HIGH);
   delay(5);
-  return analogRead(x2);
+  if (analogRead(x2)<505||analogRead(x2)>509) {
+    lcd.setCursor(2,0);
+    lcd.print(analogRead(x2));
+  }
 }
 
-uint16_t readY() {
+void readY() {
   pinMode(y1, INPUT);
   pinMode(x2, OUTPUT);
   pinMode(y2, INPUT);
@@ -30,13 +39,16 @@ uint16_t readY() {
   digitalWrite(x2, LOW);
   digitalWrite(x1, HIGH);
   delay(5);
-  return analogRead(y1);
+  if (analogRead(y1)<505||analogRead(y1)>509) {
+    lcd.setCursor(2,1);
+    lcd.print(analogRead(y1));
+  }
 }
 
 void loop() {
-  lcd.setCursor(0,0);
-  lcd.print("X ");lcd.print(readX());
-  lcd.setCursor(0,1);
-  lcd.print("Y ");lcd.print(readY());
+  if (analogRead(x2)<505||analogRead(x2)>509) {
+    readX();
+    readY();
+  }
   delay (200);
 }
