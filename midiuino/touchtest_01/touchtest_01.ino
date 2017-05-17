@@ -19,7 +19,7 @@ int readX() {
   digitalWrite(x2, LOW);
   digitalWrite(x1, HIGH);
   delay(5);
-  return analogRead(y1/10);
+  return analogRead(y1);
 }
 
 int readY() {
@@ -30,7 +30,7 @@ int readY() {
   digitalWrite(y1, LOW);
   digitalWrite(y2, HIGH);
   delay(5);
-  return analogRead(x2/10);
+  return analogRead(x2);
 }
 
 void loop() {
