@@ -6,11 +6,31 @@ const uint16_t y2 = A1;
 const uint16_t x2 = A2;
 const uint16_t y1 = A3;
 
+void lcdInit();
+void readX();
+void readY();
+
+//---------------------------------------------
+
 void setup() {
+  lcdInit();
+}
+
+void loop() {
+  readX();
+  readY();
+  delay (50);
+}
+
+//---------------------------------------------
+
+void lcdInit() {
   lcd.begin(16,2);
   lcd.clear();
   lcd.setCursor(0,0); lcd.print("X");
   lcd.setCursor(0,1); lcd.print("Y");
+  lcd.setCursor(4,0); lcd.print("-");
+  lcd.setCursor(4,1); lcd.print("-");
   lcd.setCursor(8,0);
   lcd.print("(c)1983");
   lcd.setCursor(8,1);
@@ -27,7 +47,9 @@ void readX() {
   delay(5);
   if (analogRead(x2)<505||analogRead(x2)>509) {
     lcd.setCursor(2,0);
-    lcd.print(analogRead(x2));
+    lcd.print(analogRead(x2)/10);
+    lcd.setCursor(5,0);
+    lcd.print(analogRead(x2)%10);
   }
 }
 
@@ -41,14 +63,8 @@ void readY() {
   delay(5);
   if (analogRead(y1)<505||analogRead(y1)>509) {
     lcd.setCursor(2,1);
-    lcd.print(analogRead(y1));
+    lcd.print(analogRead(y1)/10);
+    lcd.setCursor(5,1);
+    lcd.print(analogRead(y1)%10);
   }
-}
-
-void loop() {
-  if (analogRead(x2)<505||analogRead(x2)>509) {
-    readX();
-    readY();
-  }
-  delay (200);
 }
