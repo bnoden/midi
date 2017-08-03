@@ -1,0 +1,118 @@
+
+
+https://mmckegg.github.io/web-audio-school/
+
+
+                        -3  -1   1       4   6       9   11
+                       -4  -2   0   2   3   5   7   8   10  12
+  .___________________________________________________________________________.
+  :  | |  |  | | | |  |  | | | | | |  |  | | | |  |  | | | | | |  |  | | | |  :
+  :  | |  |  | | | |  |  | | | | | |  |  | | | |  |  | | | | | |  |  | | | |  :
+  :  | |  |  | | | |  |  | | | | | |  |  | | | |  |  | | | | | |  |  | | | |  :
+<-:  |_|  |  |_| |_|  |  |_| |_| |_|  |  |_| |_|  |  |_| |_| |_|  |  |_| |_|  :->
+  :   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   :
+  : A | B | C | D | E | F | G | A | B | C | D | E | F | G | A | B | C | D | E :
+  :___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___: 
+    ^                           ^           ^               ^           ^
+  220 Hz                      440 Hz      523.25 Hz       880 Hz     1174.65 Hz
+(-1 Octave)                 (middle A)                 (+1 Octave)
+
+
+
+Each octave, 12 semitones, doubles frequency
+	
+	baseFrequency * Math.pow(2, noteOffset / 12);
+
+		- to transpose up 7 semitones, ex:
+
+			oscillator.frequency.value = 440*Math.pow(2, 7/12);   // 659.255
+
+		- to transpose down 14 semitones:
+
+			oscillator.frequency.value = 440*Math.pow(2, -14/12); // 195.998
+
+		- alternatively, use detune to transpose 1/100 semitones:
+				in this case, 7 semitones: 
+					oscillator.detune.value = 700;	// noteOffset*100
+
+
+Filters
+	BiquadFilterNode
+			highpass
+			lowpass
+
+			bandpass
+				Only allows frequencies that are within a certain tolerance of frequency specified by Q.
+					The greater the Q value, the smaller the frequency band.
+						ex:
+							// filter out all frequencies that are not near 1000 Hz
+							filter.type = 'bandpass'
+							filter.frequency.value = 1000
+							filter.Q.value = 1
+
+			lowshelf
+			highshelf
+			peaking
+			notch
+			allpass
+
+Modulating Audio Parameters
+
+	setValueAtTime(value, time)
+		Schedules an instant change to the value of the AudioParam at a precise time,
+		as measured against AudioContext.currentTime.
+
+	linearRampToValueAtTime(value, endTime)
+		Schedules a gradual linear change in the value of the AudioParam. The change
+		starts at the time specified for the previous event, follows a linear ramp
+		to the new value given in the value parameter, and reaches the new value at
+		the time given in the endTime parameter.
+
+	exponentialRampToValueAtTime(value, endTime)
+		Schedules a gradual exponential change in the value of the AudioParam. The
+		change starts at the time specified for the previous event, follows an
+		exponential ramp to the new value given in the valueparameter, and reaches the
+		new value at the time given in the endTime parameter.
+
+			examples:
+				// preset value to avoid popping on start
+				filter.frequency.value = 200
+
+				// schedule the start time
+				filter.frequency.setValueAtTime(200, audioContext.currentTime)
+
+				// ramp the value, and set end time!
+				filter.frequency.linearRampToValueAtTime(6000, audioContext.currentTime + 2)
+
+Gain - output volume
+	ex:
+		var amp = audioContext.createGain();
+		amp.connect(audioContext.destination);
+		oscillator.connect(amp);
+
+		// halve the output volume
+		amp.gain.value = 0.5;
+
+		Attack
+			If we want to soften the "attack" of the sound (the start), we can sweep
+			the value from 0 to 1:
+
+				amp.gain.value = 0;
+				amp.gain.setTargetAtTime(1, audioContext.currentTime, 0.1);
+
+		Release
+			If we want to soften the "release" of the sound (the tail end), we can
+			sweep the value back to 0.
+
+				var endTime = audioContext.currentTime + 2;
+				amp.gain.setTargetAtTime(0, endTime, 0.2);
+
+				 if you are going to add a release envelope to a sound, the sound needs to
+				 keep playing until the release sweep finishes, otherwise it will just stop.
+
+						// provide enough time for the exponential falloff
+						oscillator.stop(endTime + 2);
+
+
+
+
